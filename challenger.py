@@ -67,6 +67,9 @@ class ChallengerTeam(Team):
 
         return end_pos_y
 
+    def is_coming_from_back(self, ball_x, bar_x):
+        return ball_x - self.prev_ball_pos_x > 0 and ball_x < bar_x
+
     @property
     def name(self) -> str:
         return PLAYER_NAME
@@ -75,7 +78,13 @@ class ChallengerTeam(Team):
         """
         前衛の青色のバーをコントロールします。
         """
+
         direction = (state.ball_pos.y - state.mine_team.atk_pos.y) > 0
+
+        # 自分より左にボールがあって、相手に向かって進んでいるボールは避ける
+        if self.is_coming_from_back(state.ball_pos.x, state.mine_team.atk_pos.x):
+            return -info.atk_return_limit if direction else info.atk_return_limit
+
         return info.atk_return_limit if direction else -info.atk_return_limit
 
     def def_action(self, info: GameInfo, state: State) -> int:
