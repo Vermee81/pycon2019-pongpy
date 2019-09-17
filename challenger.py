@@ -61,9 +61,6 @@ class ChallengerTeam(Team):
         # バーのxの位置の時のyの位置を計算する
         end_pos_y = bar_pos_x * slant + y_inter
 
-        print("y = ", slant, " x + ", y_inter)
-        print("end_pos_y ", end_pos_y)
-
         # 最後は1つ前のボールの位置を更新する
         self.prev_ball_pos_y = ball_y
         self.prev_ball_pos_x = ball_x
