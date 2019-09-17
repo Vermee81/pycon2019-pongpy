@@ -61,9 +61,6 @@ class ChallengerTeam(Team):
         # バーのxの位置の時のyの位置を計算する
         end_pos_y = bar_pos_x * slant + y_inter
 
-        print("y = ", slant, " x + ", y_inter)
-        print("end_pos_y ", end_pos_y)
-
         # 最後は1つ前のボールの位置を更新する
         self.prev_ball_pos_y = ball_y
         self.prev_ball_pos_x = ball_x
@@ -75,17 +72,16 @@ class ChallengerTeam(Team):
         return PLAYER_NAME
 
     def atk_action(self, info: GameInfo, state: State) -> int:
-        '''
+        """
         前衛の青色のバーをコントロールします。
-        '''
-        end_y = self.calc_end_pos_y(state.ball_pos.x, state.ball_pos.y, state.mine_team.atk_pos.x)
+        """
         direction = (state.ball_pos.y - state.mine_team.atk_pos.y) > 0
         return info.atk_return_limit if direction else -info.atk_return_limit
 
     def def_action(self, info: GameInfo, state: State) -> int:
-        '''
+        """
         後衛のオレンジ色のバーをコントロールします。
-        '''
+        """
         end_y = self.calc_end_pos_y(state.ball_pos.x, state.ball_pos.y, state.mine_team.atk_pos.x)
         direction = (end_y - state.mine_team.def_pos.y) > 0
         return info.def_return_limit if direction else -info.def_return_limit
