@@ -72,17 +72,17 @@ class ChallengerTeam(Team):
         return PLAYER_NAME
 
     def atk_action(self, info: GameInfo, state: State) -> int:
-        '''
+        """
         前衛の青色のバーをコントロールします。
-        '''
+        """
         end_y = self.calc_end_pos_y(state.ball_pos.x, state.ball_pos.y, state.mine_team.atk_pos.x)
         direction = (state.ball_pos.y - state.mine_team.atk_pos.y) > 0
         return info.atk_return_limit if direction else -info.atk_return_limit
 
     def def_action(self, info: GameInfo, state: State) -> int:
-        '''
+        """
         後衛のオレンジ色のバーをコントロールします。
-        '''
+        """
         end_y = self.calc_end_pos_y(state.ball_pos.x, state.ball_pos.y, state.mine_team.atk_pos.x)
         direction = (end_y - state.mine_team.def_pos.y) > 0
         return info.def_return_limit if direction else -info.def_return_limit
