@@ -75,7 +75,6 @@ class ChallengerTeam(Team):
         """
         前衛の青色のバーをコントロールします。
         """
-        end_y = self.calc_end_pos_y(state.ball_pos.x, state.ball_pos.y, state.mine_team.atk_pos.x)
         direction = (state.ball_pos.y - state.mine_team.atk_pos.y) > 0
         return info.atk_return_limit if direction else -info.atk_return_limit
 
