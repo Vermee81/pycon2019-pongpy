@@ -52,7 +52,8 @@ class ChallengerTeam(Team):
         # 現時点のx切片を求める
         x_inter = -1 * y_inter / slant
 
-        x_inter += x_inter * int(bounces / 2)
+        # 現時点のx切片から反射する回数分、バーに近づける
+        x_inter += x_inter * bounces
 
         # バーに到達する式のx切片と傾きを元にy切片を求める
         y_inter = -1 * int(bounces / 2) * slant * x_inter
