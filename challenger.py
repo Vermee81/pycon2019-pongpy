@@ -54,6 +54,7 @@ class ChallengerTeam(Team):
 
         x_inter += x_inter * int(bounces / 2)
 
+        # バーに到達する式のx切片と傾きを元にy切片を求める
         y_inter = -1 * int(bounces / 2) * slant * x_inter
 
         # バーのxの位置の時のyの位置を計算する
